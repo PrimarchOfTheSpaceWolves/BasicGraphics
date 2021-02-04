@@ -35,7 +35,8 @@ string readFileToString(string filename) {
 	// Could we open file?
 	if(!file || file.fail()) {
 		cerr << "ERROR: Could not open file: " << filename << endl;
-		throw exception(("ERROR: Could not open file: " + filename).c_str());
+		const char *m = ("ERROR: Could not open file: " + filename).c_str();
+		throw exception(m);
 	}
 
 	// Create output stream to receive file data
