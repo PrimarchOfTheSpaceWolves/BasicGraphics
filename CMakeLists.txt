@@ -88,17 +88,14 @@ if(WIN32 AND NOT MINGW)
 	set(ASSIMP_MSVC_VERSION "-vc${MSVC_TOOLSET_VERSION}")
 
 	myFindPackage("ASSIMP_LIBRARY" "assimp${ASSIMP_MSVC_VERSION}-mt_d" "assimp${ASSIMP_MSVC_VERSION}-mt" ${MASTER_DEPEND}/lib)
-	myFindPackage("ASSIMP_ZLIB" "zlibstaticd" "zlibstatic" ${MASTER_DEPEND}/lib)
-	myFindPackage("ASSIMP_IRR" "IrrXML_d" "IrrXML" ${MASTER_DEPEND}/lib)
+	myFindPackage("ASSIMP_ZLIB" "zlibstaticd" "zlibstatic" ${MASTER_DEPEND}/lib)	
 elseif(WIN32 AND MINGW)
 	myFindPackage("ASSIMP_LIBRARY" "assimp" "assimp" ${MASTER_DEPEND}/lib)
-	myFindPackage("ASSIMP_ZLIB" "zlibstatic" "zlibstatic" ${MASTER_DEPEND}/lib)
-	myFindPackage("ASSIMP_IRR" "IrrXML" "IrrXML" ${MASTER_DEPEND}/lib)
+	myFindPackage("ASSIMP_ZLIB" "zlibstatic" "zlibstatic" ${MASTER_DEPEND}/lib)	
 elseif(NOT WIN32)
 	find_package(assimp REQUIRED)
 	set(ASSIMP_LIBRARY ${ASSIMP_LIBRARIES})
-	set(ASSIMP_ZLIB "")
-	set(ASSIMP_IRR "")
+	set(ASSIMP_ZLIB "")	
 endif()
 
 #####################################
@@ -139,10 +136,7 @@ file(GLOB GENERAL_SOURCES
 # Set general libraries
 #####################################
 
-#set(GENERAL_LIBRARIES ${OPENGL_LIBRARY} ${GLFW_LIBRARY} ${GLEW_LIBRARY} ${ASSIMP_LIBRARY} ${ASSIMP_ZLIB} ${ASSIMP_IRR})
-
-set(GENERAL_LIBRARIES ${GLFW_LIBRARY} ${GLEW_LIBRARY} ${ASSIMP_LIBRARY} ${ASSIMP_ZLIB} ${ASSIMP_IRR} ${OPENGL_LIBRARY})
-
+set(GENERAL_LIBRARIES ${GLFW_LIBRARY} ${GLEW_LIBRARY} ${ASSIMP_LIBRARY} ${ASSIMP_ZLIB} ${OPENGL_LIBRARY})
 
 #####################################
 # Extra setup
@@ -155,12 +149,6 @@ if(APPLE)
 	set(EXTRA_LIBS ${COCOA_LIBRARY} ${IOKIT_LIBRARY} ${COREVIDEO_LIBRARY})
 	set(GENERAL_LIBRARIES ${GENERAL_LIBRARIES} ${EXTRA_LIBS})
 endif()
-
-#if(NOT WIN32)
-#	set(GENERAL_LIBRARIES ${GENERAL_LIBRARIES} stdc++fs atomic)
-#elseif(WIN32 AND MINGW)
-#	set(GENERAL_LIBRARIES ${GENERAL_LIBRARIES} atomic) #stdc++fs atomic)
-#endif()
 
 #####################################
 # Create executable

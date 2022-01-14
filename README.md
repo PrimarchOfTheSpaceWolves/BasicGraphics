@@ -53,9 +53,6 @@ In brief, the sample:
 
 6. Loads vertex and fragment shader code from Basic.vs and Basic.fs.
 
-   * If you are using *Visual Code*, then you will want to leave the paths as "../../Basic.vs" and "../../Basic.fs".
-   * If you are using *Visual Studio*, then you may have to change the paths to "../Basic.vs" and "../Basic.fs".
-
 7. (Debugging mode) Prints shader code.
 
 8. Creates a shader program from loaded code.
